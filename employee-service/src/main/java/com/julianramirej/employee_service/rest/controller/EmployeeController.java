@@ -5,6 +5,7 @@ import com.julianramirej.employee_service.rest.dto.EmployeeResponse;
 import com.julianramirej.employee_service.rest.service.EmployeeService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,13 +35,9 @@ public class EmployeeController {
             EmployeeResponse response = service.processEmployee(request);
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Unexpected error: " + e.getMessage());
+            return ResponseEntity.internalServerError().body("Unexpected Error" + e.getMessage());
         }
     }
 }

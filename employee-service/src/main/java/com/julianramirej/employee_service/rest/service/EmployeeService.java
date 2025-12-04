@@ -4,6 +4,9 @@ import com.julianramirej.employee_service.rest.dto.EmployeeRequest;
 import com.julianramirej.employee_service.rest.dto.EmployeeResponse;
 import com.julianramirej.employee_service.validator.EmployeeValidator;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,13 +37,13 @@ public class EmployeeService {
     }
 
     private String calculateAge(String fechaNacimiento) {
-        LocalDate birthDate = LocalDate.parse(fechaNacimiento, DATE_FORMATTER);
+        LocalDate birthDate = LocalDate.parse(fechaNacimiento);
         Period age = Period.between(birthDate, LocalDate.now());
         return formatDate(age);
     }
 
     private String calculateVinculationTime(String fechaVinculacion) {
-        LocalDate joinDate = LocalDate.parse(fechaVinculacion, DATE_FORMATTER);
+        LocalDate joinDate = LocalDate.parse(fechaVinculacion);
         Period vinculationTime = Period.between(joinDate, LocalDate.now());
         return formatDate(vinculationTime);
     }
