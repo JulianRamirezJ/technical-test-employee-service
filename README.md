@@ -97,7 +97,7 @@ El script run.sh incluye verificación de dependencias y del estado del Docker d
 - Dar permisos de ejecución al script: ``` chmod +x run.sh ```
 - Asegurarse de que Docker esté corriendo: ``` docker info ```
 - Ejecutar el script: ``` ./run.sh ```
-- El servicio REST quedará dispoonible en la URL http://localhost:8080/employee, además puede utilizar el archivo
+- El servicio REST quedará disponible en la URL http://localhost:8080/employee, además puede utilizar el archivo
   'Employee API.postman_collection.json' que está disponible en la raiz del proyecto como guía para probar a través de Postman.
 - Este es un ejemplo de request con los parametros requeridos por la API: 
 ``` GET http://localhost:8080/employee?nombres=Julian&apellidos=Ramirez&tipoDocumento=Cedula&numeroDocumento=12345678&fechaNacimiento=2000-05-20&fechaVinculacion=2020-07-12&cargo=Dev&salario=1000 ```
