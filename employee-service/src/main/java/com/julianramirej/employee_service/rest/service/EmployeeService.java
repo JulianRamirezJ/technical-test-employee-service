@@ -7,6 +7,7 @@ import com.julianramirej.employee_service.rest.dto.EmployeeResponse;
 import com.julianramirej.employee_service.validator.EmployeeValidator;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ import java.time.Period;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class EmployeeService {
 
     private final SoapClient soapClient;
@@ -24,6 +26,7 @@ public class EmployeeService {
         try {
             validator.validate(request);
         } catch (Exception e) {
+            log.warn("Validation failed: {}", e.getMessage());
             throw new IllegalArgumentException(e.getMessage());
         }
 
@@ -41,6 +44,10 @@ public class EmployeeService {
 
         EmployeeRequestSoap soapReq = toSoap(request);
         boolean saved = soapClient.saveEmployee(soapReq);
+
+        if (!saved) {
+            log.error("SOAP service failed to save employee");
+        }
 
         return response;
     }

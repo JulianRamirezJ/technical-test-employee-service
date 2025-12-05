@@ -1,0 +1,305 @@
+{
+	"info": {
+		"_postman_id": "53900f44-8078-4462-a478-76623feca7f1",
+		"name": "Employee API",
+		"description": "Se incluyen diferentes ejempos de request para probar la aplicación de empleados.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26800385"
+	},
+	"item": [
+		{
+			"name": "Valid Employee Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/employee?nombres=Julian&apellidos=Ramirez&tipoDocumento=Cedula&numeroDocumento=12345678&fechaNacimiento=2000-05-20&fechaVinculacion=2020-07-12&cargo=Dev&salario=1000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"employee"
+					],
+					"query": [
+						{
+							"key": "nombres",
+							"value": "Julian"
+						},
+						{
+							"key": "apellidos",
+							"value": "Ramirez"
+						},
+						{
+							"key": "tipoDocumento",
+							"value": "Cedula"
+						},
+						{
+							"key": "numeroDocumento",
+							"value": "12345678"
+						},
+						{
+							"key": "fechaNacimiento",
+							"value": "2000-05-20"
+						},
+						{
+							"key": "fechaVinculacion",
+							"value": "2020-07-12"
+						},
+						{
+							"key": "cargo",
+							"value": "Dev"
+						},
+						{
+							"key": "salario",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid fechaVinculacion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/employee?nombres=Julian&apellidos=Ramirez&tipoDocumento=Cedula&numeroDocumento=12345678&fechaNacimiento=2000-05-20&fechaVinculacion=20-07-12&cargo=Dev&salario=1000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"employee"
+					],
+					"query": [
+						{
+							"key": "nombres",
+							"value": "Julian"
+						},
+						{
+							"key": "apellidos",
+							"value": "Ramirez"
+						},
+						{
+							"key": "tipoDocumento",
+							"value": "Cedula"
+						},
+						{
+							"key": "numeroDocumento",
+							"value": "12345678"
+						},
+						{
+							"key": "fechaNacimiento",
+							"value": "2000-05-20"
+						},
+						{
+							"key": "fechaVinculacion",
+							"value": "20-07-12"
+						},
+						{
+							"key": "cargo",
+							"value": "Dev"
+						},
+						{
+							"key": "salario",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid fechaNacimiento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/employee?nombres=Julian&apellidos=Ramirez&tipoDocumento=Cedula&numeroDocumento=12345678&fechaNacimiento=20-05-20&fechaVinculacion=2020-07-12&cargo=Dev&salario=1000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"employee"
+					],
+					"query": [
+						{
+							"key": "nombres",
+							"value": "Julian"
+						},
+						{
+							"key": "apellidos",
+							"value": "Ramirez"
+						},
+						{
+							"key": "tipoDocumento",
+							"value": "Cedula"
+						},
+						{
+							"key": "numeroDocumento",
+							"value": "12345678"
+						},
+						{
+							"key": "fechaNacimiento",
+							"value": "20-05-20"
+						},
+						{
+							"key": "fechaVinculacion",
+							"value": "2020-07-12"
+						},
+						{
+							"key": "cargo",
+							"value": "Dev"
+						},
+						{
+							"key": "salario",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empty field numeroDocumento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/employee?nombres=Julian&apellidos=Ramirez&tipoDocumento=Cedula&numeroDocumento=&fechaNacimiento=20-05-20&fechaVinculacion=2020-07-12&cargo=Dev&salario=1000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"employee"
+					],
+					"query": [
+						{
+							"key": "nombres",
+							"value": "Julian"
+						},
+						{
+							"key": "apellidos",
+							"value": "Ramirez"
+						},
+						{
+							"key": "tipoDocumento",
+							"value": "Cedula"
+						},
+						{
+							"key": "numeroDocumento",
+							"value": ""
+						},
+						{
+							"key": "fechaNacimiento",
+							"value": "20-05-20"
+						},
+						{
+							"key": "fechaVinculacion",
+							"value": "2020-07-12"
+						},
+						{
+							"key": "cargo",
+							"value": "Dev"
+						},
+						{
+							"key": "salario",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative number on salario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/employee?nombres=Julian&apellidos=Ramirez&tipoDocumento=Cedula&numeroDocumento=435455&fechaNacimiento=2000-05-20&fechaVinculacion=2020-07-12&cargo=Dev&salario=-1000",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"employee"
+					],
+					"query": [
+						{
+							"key": "nombres",
+							"value": "Julian"
+						},
+						{
+							"key": "apellidos",
+							"value": "Ramirez"
+						},
+						{
+							"key": "tipoDocumento",
+							"value": "Cedula"
+						},
+						{
+							"key": "numeroDocumento",
+							"value": "435455"
+						},
+						{
+							"key": "fechaNacimiento",
+							"value": "2000-05-20"
+						},
+						{
+							"key": "fechaVinculacion",
+							"value": "2020-07-12"
+						},
+						{
+							"key": "cargo",
+							"value": "Dev"
+						},
+						{
+							"key": "salario",
+							"value": "-1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Direct connection to the SOAP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n                  xmlns:emp=\"http://julianramirej.com/employee_service/soap\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <emp:EmployeeRequest>\n         <nombres>Juan</nombres>\n         <apellidos>Zuluaga</apellidos>\n         <tipoDocumento>Cedula</tipoDocumento>\n         <numeroDocumento>1234567</numeroDocumento>\n         <fechaNacimiento>1998-11-22</fechaNacimiento>\n         <fechaVinculacion>2024-09-02</fechaVinculacion>\n         <cargo>Administrador</cargo>\n         <salario>1800.0</salario>\n      </emp:EmployeeRequest>\n   </soapenv:Body>\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/ws",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"ws"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

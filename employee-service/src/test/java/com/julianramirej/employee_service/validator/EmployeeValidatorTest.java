@@ -60,4 +60,14 @@ class EmployeeValidatorTest {
 
         assertEquals("Request inválido: El empleado debe ser mayor de edad", ex.getMessage());
     }
+
+    @Test
+    void shouldFailWhenSalaryIsNegative() {
+        request.setSalario(-1000.0);
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+                () -> validator.validate(request));
+
+        assertEquals("Request inválido: El salario no puede ser negativo", ex.getMessage());
+    }
 }
