@@ -22,6 +22,7 @@
     <xs:element name="EmployeeResponse">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="success" type="xs:boolean"/>
                 <xs:element name="mensaje" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>

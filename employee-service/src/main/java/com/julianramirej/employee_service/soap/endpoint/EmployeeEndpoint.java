@@ -42,8 +42,10 @@ public class EmployeeEndpoint {
 
         try {
             EmployeeEntity saved = repository.save(entity);
+            response.setSuccess(true);
             response.setMensaje("Empleado guardado correctamente con ID: " + saved.getId());
         } catch (Exception e) {
+            response.setSuccess(false);
             response.setMensaje("Error al guardar el empleado: " + e.getMessage());
         }
 
