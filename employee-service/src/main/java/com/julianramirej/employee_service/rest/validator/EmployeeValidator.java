@@ -13,6 +13,7 @@ public class EmployeeValidator {
         LocalDate birthDate = validateValidDate(request.getFechaNacimiento(), "fechaNacimiento");
         LocalDate hiringDate = validateValidDate(request.getFechaVinculacion(), "fechaVinculacion");
         validateAge(birthDate);
+        validateSalary(request.getSalario());
     }
 
     private void validateNotEmptyFields(EmployeeRequest request) {
@@ -45,6 +46,12 @@ public class EmployeeValidator {
         int age = Period.between(birthDate, LocalDate.now()).getYears();
         if (age < 18) {
             throw new IllegalArgumentException("Request inválido: El empleado debe ser mayor de edad");
+        }
+    }
+
+    private void validateSalary(Double salary) {
+        if (salary < 0) {
+            throw new IllegalArgumentException("Request inválido: El salario no puede ser negativo");
         }
     }
 }
