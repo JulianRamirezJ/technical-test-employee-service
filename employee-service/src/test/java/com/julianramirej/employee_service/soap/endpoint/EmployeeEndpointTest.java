@@ -1,7 +1,7 @@
 package com.julianramirej.employee_service.soap.endpoint;
 
-import com.julianramirej.employee_service.soap.dto.EmployeeRequest;
-import com.julianramirej.employee_service.soap.dto.EmployeeResponse;
+import com.julianramirej.employee_service.soap.dto.EmployeeRequestSoap;
+import com.julianramirej.employee_service.soap.dto.EmployeeResponseSoap;
 import com.julianramirej.employee_service.soap.repository.EmployeeRepository;
 import com.julianramirej.employee_service.soap.entity.EmployeeEntity;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,11 +23,11 @@ class EmployeeEndpointTest {
     @InjectMocks
     private EmployeeEndpoint endpoint;
 
-    private EmployeeRequest request;
+    private EmployeeRequestSoap request;
 
     @BeforeEach
     void setUp() {
-        request = new EmployeeRequest();
+        request = new EmployeeRequestSoap();
         request.setNombres("Julian");
         request.setApellidos("Ramirez");
         request.setTipoDocumento("CC");
@@ -41,7 +41,7 @@ class EmployeeEndpointTest {
     @Test
     void shouldReturnSuccessWhenSaveSucceeds() {
         when(repository.save(any(EmployeeEntity.class))).thenReturn(new EmployeeEntity());
-        EmployeeResponse response = endpoint.saveEmployee(request);
+        EmployeeResponseSoap response = endpoint.saveEmployee(request);
 
         verify(repository, times(1)).save(any());
         assertTrue(response.isSuccess());
@@ -51,7 +51,7 @@ class EmployeeEndpointTest {
     void shouldReturnErrorWhenSaveFails() {
         doThrow(new RuntimeException("DB error")).when(repository).save(any());
 
-        EmployeeResponse response = endpoint.saveEmployee(request);
+        EmployeeResponseSoap response = endpoint.saveEmployee(request);
 
         verify(repository, times(1)).save(any());
         assertFalse(response.isSuccess());

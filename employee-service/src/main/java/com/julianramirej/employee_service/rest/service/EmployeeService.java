@@ -1,17 +1,23 @@
 package com.julianramirej.employee_service.rest.service;
 
+import com.julianramirej.employee_service.soap.client.SoapClient;
+import com.julianramirej.employee_service.soap.dto.EmployeeRequestSoap;
 import com.julianramirej.employee_service.rest.dto.EmployeeRequest;
 import com.julianramirej.employee_service.rest.dto.EmployeeResponse;
 import com.julianramirej.employee_service.validator.EmployeeValidator;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.Period;
 
-import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class EmployeeService {
 
+    private final SoapClient soapClient;
     private final EmployeeValidator validator = new EmployeeValidator();
 
     public EmployeeResponse processEmployee(EmployeeRequest request) {
@@ -33,6 +39,9 @@ public class EmployeeService {
         response.setEdadActual(calculateAge(request.getFechaNacimiento()));
         response.setTiempoVinculacion(calculateVinculationTime(request.getFechaVinculacion()));
 
+        EmployeeRequestSoap soapReq = toSoap(request);
+        boolean saved = soapClient.saveEmployee(soapReq);
+
         return response;
     }
 
@@ -53,4 +62,18 @@ public class EmployeeService {
                 period.getMonths() + " meses, " +
                 period.getDays() + " días";
     }
+
+    private EmployeeRequestSoap toSoap(EmployeeRequest req) {
+        EmployeeRequestSoap soap = new EmployeeRequestSoap();
+        soap.setNombres(req.getNombres());
+        soap.setApellidos(req.getApellidos());
+        soap.setTipoDocumento(req.getTipoDocumento());
+        soap.setNumeroDocumento(req.getNumeroDocumento());
+        soap.setFechaNacimiento(req.getFechaNacimiento());
+        soap.setFechaVinculacion(req.getFechaVinculacion());
+        soap.setCargo(req.getCargo());
+        soap.setSalario(req.getSalario());
+        return soap;
+    }
+
 }

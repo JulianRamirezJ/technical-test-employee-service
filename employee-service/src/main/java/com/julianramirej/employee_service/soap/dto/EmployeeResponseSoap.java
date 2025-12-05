@@ -9,7 +9,7 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 @Data
 @XmlRootElement(name = "EmployeeResponse", namespace = "http://julianramirej.com/employee_service/soap")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EmployeeResponse {
+public class EmployeeResponseSoap {
     private boolean success;
     private String mensaje;
 }
