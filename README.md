@@ -86,8 +86,9 @@ Para ejecutar los tests se utiliza Maven: ``` ./mvnw test ```
 Esta aplicación fue diseñada para que pueda ejecutarse fácilmente sin necesidad de instalar MySQL localmente.
 El script run.sh se encarga de preparar todo el entorno, levantar los servicios y dejar la API lista para usar.
 
-Para ejecutar el proyecto es necesario tener instalado: Java 17, Maven 3+ (opcional, el proyecto incluye Maven Wrapper ./mvnw)), Docker (debe estar corriendo para levantar la base de datos),
-Bash (para ejecutar el script run.sh)
+Para ejecutar el proyecto es necesario tener instalado: Java 17, Maven 3+ (opcional, el proyecto incluye Maven Wrapper ./mvnw), Docker (debe estar corriendo para levantar la base de datos),
+Bash (para ejecutar el script run.sh).
+
 El script run.sh incluye verificación de dependencias y del estado del Docker daemon antes de arrancar la aplicación.
 
 ### Pasos para ejecutar
