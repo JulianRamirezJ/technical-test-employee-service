@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 @XmlRootElement(name = "EmployeeRequest", namespace = "http://julianramirej.com/employee_service/soap")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EmployeeRequest {
+public class EmployeeRequestSoap {
     private String nombres;
     private String apellidos;
     private String tipoDocumento;
