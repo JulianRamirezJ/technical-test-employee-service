@@ -28,6 +28,8 @@ public class EmployeeEndpoint {
     @ResponsePayload
     public EmployeeResponse saveEmployee(@RequestPayload EmployeeRequest request) {
 
+        EmployeeResponse response = new EmployeeResponse();
+
         EmployeeEntity entity = new EmployeeEntity();
         entity.setNombres(request.getNombres());
         entity.setApellidos(request.getApellidos());
@@ -38,8 +40,13 @@ public class EmployeeEndpoint {
         entity.setCargo(request.getCargo());
         entity.setSalario(request.getSalario());
 
-        EmployeeResponse response = new EmployeeResponse();
-        response.setMensaje("Empleado recibido correctamente");
+        try {
+            EmployeeEntity saved = repository.save(entity);
+            response.setMensaje("Empleado guardado correctamente con ID: " + saved.getId());
+        } catch (Exception e) {
+            response.setMensaje("Error al guardar el empleado: " + e.getMessage());
+        }
+
         return response;
     }
 }
